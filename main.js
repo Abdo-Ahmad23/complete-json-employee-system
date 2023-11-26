@@ -100,7 +100,7 @@ let createNewObject=()=>{
     }
     if(newObject1.name=="" ||newObject1.Position==""  ||newObject1.GROSS==""
       ||newObject1.department=="" ||newObject1.TAX=="" ||newObject1.tranCost==""
-      ||newObject1.Bouns=="" ||newObject1.count=="")
+      ||newObject1.Bouns=="")
       {
         window.alert("Please Complete Your Data!!");
       }
