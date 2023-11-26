@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <title>To Do List</title>
+</head>
+<body class="" style="height: 100vh;font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+    <div class="above container text-center">
+        <!-- <button> -->
+            <i id="btnIcon" class="fa-regular fa-lightbulb mt-5 text-secondary iconBlack text-black" style="font-size:90px;"></i>
+        <!-- </button> -->
+        <!-- <i class="fas fa-3x fa-heart "></i> -->
+
+    </div>
+    <div class="container col-md-9 mt-5">
+        <h1 class="text-center" style="color: #612940;"><span style="color: blueviolet;">JSON </span>Employees System</h1>
+        <div class="card style1">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Employee Name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" id="Position" placeholder="Employee Position" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                
+                <h5>Salary</h5>
+                <div class="row" id="inputSalary">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="number" placeholder="TAX%" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="number" placeholder="GROSS" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input type="number" placeholder="Trans Cost %" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input type="number" placeholder="Bouns"class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input type="number" placeholder="Total"class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6" id="col_department">
+                       <div class="form-group">
+                        <select type="text" class="form-control" id="department">
+                            <option selected disabled>Employee Department</option>
+                            <option value="HR">HR</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Information System">Information System</option>
+                            <option value="Programmer">Programmer</option>
+                        </select>
+                       </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                         <input type="number" id="count" class="form-control" placeholder="count">
+                        </div>
+                     </div>
+                   
+                </div>
+                <div class="d-grid">
+                    <button class="btn btn-info fs-4 mt-3" id="btnCreate">Create a new Empolyee</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <h1 class="text-center mt-3 mb-3 text-info" id="This">All Employees</h1>
+    <div class="container col-md-12">
+        <div class="card dark">
+            <div class="d-grid">
+                <button class="btn btn-danger" id="deleteAllBtn">Delete All Elements <span id="spanCounterTask"></span></button>
+            </div>
+            <div class="card-body">
+                <table class="table table-dark" id="ourTable">
+                    <tr id="_first">
+                        <th class="text-center">Id</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Position</th>
+                        <th class="viewTh text-center">View More</th>
+                        
+                        <th class="hiddenTh text-center">GROSS</th>
+                        <th class="hiddenTh text-center">Tax</th>
+                        <th class="hiddenTh text-center">TransCost</th>
+                        <th class="hiddenTh text-center">Bouns</th>
+                        <th class="hiddenTh text-center">Total</th> 
+                       
+                        <th colspan="2" class="text-center">Action</th>
+
+                    </tr>
+                    <tbody id="tbody">
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="ourModal">
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 titleModal" id="exampleModalLabel"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="bodyModal">
+            <!--
+
+                name:name.value,
+        Position:Position.value,
+        department:department.value,
+        GROSS:inputSalary[1].value,
+        TAX:inputSalary[0].value,
+        tranCost:inputSalary[2].value,
+        Bouns:inputSalary[3].value,
+        Total:inputSalary[4].value,
+        count:count.value,
+            -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+
+
+    <script src="./js/bootstrap.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
